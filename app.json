@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "CryptoApp Wallet",
+    "slug": "cryptoapp-wallet",
+    "scheme": "cryptoappwallet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#F4F7F8"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cryptoappwallet.mobile"
+    },
+    "android": {
+      "package": "com.cryptoappwallet.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#F4F7F8"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    }
+  }
+}

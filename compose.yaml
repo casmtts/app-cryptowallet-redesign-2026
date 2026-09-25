@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: cryptoapp-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-cryptoapp}
+      POSTGRES_USER: ${POSTGRES_USER:-cryptoapp}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cryptoapp}
+    ports:
+      - "5432:5432"
+    volumes:
+      - cryptoapp-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-cryptoapp} -d ${POSTGRES_DB:-cryptoapp}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend
+    container_name: cryptoapp-api
+    restart: unless-stopped
+    environment:
+      PORT: 8080
+      DB_HOST: postgres
+      DB_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:-cryptoapp}
+      POSTGRES_USER: ${POSTGRES_USER:-cryptoapp}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cryptoapp}
+    ports:
+      - "${API_PORT:-8080}:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  cryptoapp-postgres-data:
