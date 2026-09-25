@@ -1,0 +1,18 @@
+export const palette = {
+  background: "#F4F7F8",
+  surface: "#FFFFFF",
+  raised: "#EDF2F3",
+  text: "#172B2E",
+  muted: "#4C6063",
+  quiet: "#718386",
+  accent: "#007D83",
+  onAccent: "#FFFFFF",
+  accentSoft: "rgba(0,125,131,0.09)",
+  accentBorder: "rgba(0,125,131,0.22)",
+  positive: "#16805A",
+  positiveSoft: "rgba(22,128,90,0.10)",
+  danger: "#C94B58",
+  border: "#DCE5E6",
+  hairline: "#E8EEEF",
+  placeholder: "#849497",
+} as const;
